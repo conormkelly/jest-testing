@@ -1,14 +1,11 @@
-// Import our helper
-const jestHelper = require('./jestHelper');
-
 // Mock functions that do undesired things
-jestHelper.mock({
-  modulePath: './services/myService',
-  replace: {
+// before importing code under test
+jest.mock('./services/myService', () => {
+  return {
     dangerousFunction: (arg) => {
       return `This is a stubbed function acting on: ${arg}`;
     },
-  },
+  };
 });
 
 // Import code under test
