@@ -1,10 +1,15 @@
-// Mock functions that do undesired things
-jest.mock('./services/myService');
-const myServiceMock = require('./services/myService');
+// Import our helper
+const jestHelper = require('./jestHelper');
 
-myServiceMock.dangerousFunction = (arg) => {
-  return `This is a stubbed function acting on: ${arg}`;
-};
+// Mock functions that do undesired things
+jestHelper.mock({
+  modulePath: './services/myService',
+  replace: {
+    dangerousFunction: (arg) => {
+      return `This is a stubbed function acting on: ${arg}`;
+    },
+  },
+});
 
 // Import code under test
 const main = require('./main');
