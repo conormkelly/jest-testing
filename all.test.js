@@ -1,15 +1,13 @@
-const proxyquire = require('proxyquire').noCallThru();
+// Mock functions that do undesired things
+jest.mock('./services/myService');
+const myServiceMock = require('./services/myService');
 
-// Stub functions that do undesired things
-const myServiceStub = {};
-
-const main = proxyquire('./main', {
-  './services/myService': myServiceStub,
-});
-
-myServiceStub.dangerousFunction = (arg) => {
+myServiceMock.dangerousFunction = (arg) => {
   return `This is a stubbed function acting on: ${arg}`;
 };
+
+// Import code under test
+const main = require('./main');
 
 test('stub works as expected', () => {
   expect(main.doesDangerousThings('sample')).toBe(
