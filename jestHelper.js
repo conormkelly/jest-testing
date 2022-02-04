@@ -5,5 +5,6 @@ module.exports = {
       mockWithReplacements[key] = replace[key];
     }
     jest.mock(modulePath, () => mockWithReplacements);
+    return mockWithReplacements;
   },
 };
