@@ -1,5 +1,5 @@
 module.exports = {
-  mock: (modulePath, replace) => {
+  mock: (modulePath, replace = {}) => {
     const mockWithReplacements = jest.fn();
     for (const key in replace) {
       mockWithReplacements[key] = replace[key];
