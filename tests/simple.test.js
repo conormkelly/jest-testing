@@ -13,7 +13,7 @@ jest.mock('../services/myService', () => {
 
 describe('Demonstrating hoisting behaviour', () => {
   it('Should work', () => {
-    expect(doesDangerousThings('sample')).toBe(
+    expect(doesDangerousThings('sample')).toEqual(
       'This is a stubbed function acting on: sample'
     );
   });
