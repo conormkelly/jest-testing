@@ -1,6 +1,11 @@
+global.rootRequire = (str) => {
+  return require(__dirname + '/' + str);
+};
+
 const myService = require('./services/myService');
 const Person = require('./classes/Person');
 const timerService = require('./services/timerService');
+const dynamicService = rootRequire('services/dynamicService');
 
 function doesDangerousThings(param) {
   const result = myService.dangerousFunction(param);
@@ -18,8 +23,13 @@ async function respondAfterDelay({ ms, value }) {
   return result;
 }
 
+function dynamicImportTest(arg) {
+  return dynamicService(arg);
+}
+
 module.exports = {
   doesDangerousThings,
   greetingsFromBob,
   respondAfterDelay,
+  dynamicImportTest,
 };
