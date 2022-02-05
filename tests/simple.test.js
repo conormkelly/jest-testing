@@ -8,7 +8,7 @@ jest.mock('../services/myService', () => {
     dangerousFunction: jest
       .fn()
       .mockImplementation(
-        (arg) => `This is a stubbed function acting on: ${arg}`
+        (arg) => `This is a mock function acting on: ${arg}`
       ),
   };
 });
@@ -16,13 +16,13 @@ jest.mock('../services/myService', () => {
 describe('Demonstrating hoisting behaviour', () => {
   it('Should work', () => {
     expect(doesDangerousThings('sample')).toEqual(
-      'This is a stubbed function acting on: sample'
+      'This is a mock function acting on: sample'
     );
   });
 
   it('Should work with different args', () => {
     expect(doesDangerousThings('test')).toEqual(
-      'This is a stubbed function acting on: test'
+      'This is a mock function acting on: test'
     );
   });
 
