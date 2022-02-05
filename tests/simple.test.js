@@ -7,7 +7,9 @@ jest.mock('../services/myService', () => {
   return {
     dangerousFunction: jest
       .fn()
-      .mockReturnValueOnce('This is a stubbed function acting on: sample'),
+      .mockImplementation(
+        (arg) => `This is a stubbed function acting on: ${arg}`
+      ),
   };
 });
 
@@ -18,7 +20,13 @@ describe('Demonstrating hoisting behaviour', () => {
     );
   });
 
-  it('Should only be called once', () => {
-    expect(myService.dangerousFunction).toBeCalledTimes(1);
+  it('Should work with different args', () => {
+    expect(doesDangerousThings('test')).toEqual(
+      'This is a stubbed function acting on: test'
+    );
+  });
+
+  it('Should be called twice', () => {
+    expect(myService.dangerousFunction).toBeCalledTimes(2);
   });
 });
