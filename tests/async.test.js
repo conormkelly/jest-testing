@@ -2,11 +2,11 @@ const { respondAfterDelay } = require('../main');
 const timerService = require('../services/timerService');
 
 jest.mock('../services/timerService');
-timerService.delay = jest.fn().mockReturnValueOnce('123');
+timerService.delay = jest.fn().mockResolvedValue('123');
 
 describe('Demonstrating async behaviour', () => {
   it('Should work', async () => {
-    const result = await respondAfterDelay({ ms: 1000, input: '123' });
+    const result = await respondAfterDelay({ ms: 1000, value: '123' });
     expect(result).toEqual('123');
   });
 
